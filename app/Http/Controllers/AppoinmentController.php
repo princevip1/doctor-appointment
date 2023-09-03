@@ -12,6 +12,9 @@ class AppoinmentController extends Controller
 {
     public function appointment($did)
     {
+        if (!$did) {
+            return redirect()->route('welcome');
+        }
         $doctor = Doctor::find($did);
         return view('theme.user.appointment.index', compact('doctor'));
     }
@@ -47,8 +50,9 @@ class AppoinmentController extends Controller
         $appointment->data = $request->data;
         $appointment->time = $request->time;
         $appointment->message = $request->message;
-        $appointment->otp = random_int(100000, 999999);
-        $appointment->appointment_id = $this->generateRandomString();
+        $appointment->otp = random_int(1000, 9999);
+        $appointment->appointment_id = "ADB-"
+            . random_int(100000, 999999);
         $appointment->status = "pending";
         $appointment->otp_status = "pending";
         $check_phone = substr($appointment->phone, 0, 2);
@@ -56,10 +60,10 @@ class AppoinmentController extends Controller
         if ($check_phone == '01' && strlen($appointment->phone) == 11) {
             $pattern = '/^01/i';
             $phone = preg_replace($pattern, '8801', $appointment->phone);
-        }
-        if ($check_phone != '01' && strlen($appointment->phone) != 11) {
+        } else {
             return redirect()->back()->with('error', 'Please enter valid phone number');
         }
+
         $gateway = SmsGateway::first();
         $pattern = '/{#}/i';
         $message = preg_replace($pattern, $appointment->otp, $gateway->body);
@@ -89,7 +93,7 @@ class AppoinmentController extends Controller
         $appointment = Appointment::find($request->appointment);
 
         if ($appointment->status == "success") {
-            return redirect()->route('congratulation', compact('appointment'))->with('message', 'Appointment created successfully');
+            return redirect()->route('welcome')->with('message', 'Appointment created successfully');
         }
 
         return view('theme.user.appointment_otp.index', compact('doctor', 'appointment'));
@@ -108,12 +112,5 @@ class AppoinmentController extends Controller
             return redirect()->route('congratulation', compact('appointment'))->with('message', 'Appointment created successfully');
         }
         return redirect()->back()->with('error', 'OTP not matched');
-    }
-    public function generateRandomString($length = 8)
-    {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $randomString = substr(str_shuffle($characters), 0, $length);
-
-        return $randomString;
     }
 }

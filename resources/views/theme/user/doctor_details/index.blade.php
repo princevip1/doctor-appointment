@@ -39,7 +39,7 @@
 
 
                             <div class="blog-quote">
-                                <h4>Chember</h4>
+                                <h4>Chamber</h4>
                                 <p>
                                     {{ $doctor->chember }}
                                 </p>

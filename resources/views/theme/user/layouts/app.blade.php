@@ -247,7 +247,10 @@
                                 </ul>
                             </li> --}}
                             <li class="nav-item">
-                                <a href="contact" class="nav-link">Contact Us</a>
+                                <a href="/contact" class="nav-link">Contact Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/track" class="nav-link">Track Your Appointment</a>
                             </li>
                         </ul>
                         <div class="others-options">
@@ -256,7 +259,7 @@
                                     <div class="call-now">
                                         <i class="flaticon-phone-call-1"></i>
                                         <p>Call Now For Free</p>
-                                        <a href="tel:021-6523-3652">021-6523-3652</a>
+                                        <a href="tel:01540035524">01540035524</a>
                                     </div>
                                 </li>
 
@@ -302,7 +305,7 @@
                                         <div class="call-now">
                                             <i class="flaticon-phone-call-1"></i>
                                             <p>Call Now For Free</p>
-                                            <a href="tel:021-6523-3652">021-6523-3652</a>
+                                            <a href="tel:01540035524">01540035524</a>
                                         </div>
                                     </li>
                                     <li>
@@ -354,7 +357,7 @@
                                     <span>Address:</span>D-20, Mannan Plaza, 4th Floor, Khilkhet, Dhaka-1215, Bangladesh
                                 </li>
                                 <li>
-                                    <span>Phone:</span><a href="tel:+23216540987">(+2 321-654-0987)</a>
+                                    <span>Phone:</span><a href="tel:01540035524">(01540035524)</a>
                                 </li>
                                 <li>
                                     <span>Email:</span><a href=""><span class="__cf_email__"

@@ -58,7 +58,7 @@
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
                         <a href="{{ route('doctor_details', $item->_id) }}">
                             <div class="single-doctor-card style">
-                                <div style="height: 300px" class="doctor-img">
+                                <div style="width: 100%; height:300px; object-fit: cover; " class="doctor-img">
                                     <img src="{{ asset('images/doctor/' . $item->image) }}" alt="Image" />
                                     <div class="social-content">
                                         <ul>

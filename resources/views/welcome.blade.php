@@ -373,12 +373,12 @@
                                     <li>
                                         <i class="ri-phone-line"></i>
                                         <p>Call Now For Free</p>
-                                        <a href="tel:+7854-9654-258">(+7854-9654-258)</a>
+                                        <a href="tel:01540035524">(01540035524)</a>
                                     </li>
                                     <li>
                                         <i class="ri-map-pin-line"></i>
                                         <p>Address Here</p>
-                                        <span>10/ New York City</span>
+                                        <span>D-20, Mannan Plaza, 4th Floor, Khilkhet, Dhaka-1215, Bangladesh</span>
                                     </li>
                                     <li>
                                         <i class="ri-time-line"></i>
@@ -468,12 +468,12 @@
                                         <li>
                                             <i class="ri-phone-line"></i>
                                             <p>Call Now For Free</p>
-                                            <a href="tel:+7854-9654-258">(+7854-9654-258)</a>
+                                            <a href="tel:01540035524">(01540035524)</a>
                                         </li>
                                         <li>
                                             <i class="ri-map-pin-user-line"></i>
                                             <p>Address Here</p>
-                                            <span>10/ New York City</span>
+                                            <span>D-20, Mannan Plaza, 4th Floor, Khilkhet, Dhaka-1215, Bangladesh</span>
                                         </li>
                                     </ul>
                                 </div>

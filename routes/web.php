@@ -51,10 +51,16 @@ Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/doctor', [HomeController::class, 'doctor'])->name('doctor');
 Route::get('/doctor/{id}', [HomeController::class, 'doctor_details'])->name('doctor_details');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::get('/track', [HomeController::class, 'track'])->name('track');
+Route::post('/track', [HomeController::class, 'track'])->name('track');
 
 Route::get('/congratulation', [HomeController::class, 'congratulation'])->name('congratulation');
 
 // appointment routes
+Route::get('/appointment', function () {
+    return redirect()->route('welcome');
+})->name('appointment');
+
 Route::post('/appointment', [AppoinmentController::class, 'store'])->name('appointment.store');
 Route::get('/appointment/otp', [AppoinmentController::class, 'otp'])->name('appointment.otp');
 Route::post('/appointment/otp', [AppoinmentController::class, 'otp_check'])->name('appointment.otp_check');

@@ -25,14 +25,17 @@ class DoctorController extends Controller
             'description' => 'required',
             'chember' => 'required',
             'about' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
-        $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('images/doctor'), $imageName);
+        $imageName = "default.png";
+
+        if ($request->image) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images/doctor'), $imageName);
+        }
+
         $speciality_name = Speciality::find($request->speciality)->name;
         $division_name = Division::find($request->division)->name;
-
         $item = new Doctor();
         if ($request->_id) {
             $item = Doctor::find($request->_id);
@@ -60,11 +63,16 @@ class DoctorController extends Controller
         $item = Doctor::find($id);
 
         // unlink image
+
+        if ($item->image == 'default.png') {
+            $item->delete();
+            return redirect()->route('doctor.list')->with('message', 'Doctor Deleted Successfully');
+        }
+
         $image = public_path('images/doctor/' . $item->image);
         if (file_exists($image)) {
             @unlink($image);
         }
-
 
 
         $item->delete();

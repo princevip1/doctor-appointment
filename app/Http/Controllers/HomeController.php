@@ -42,17 +42,23 @@ class HomeController extends Controller
     }
     public function doctor(Request $request)
     {
-        $doctors = Doctor::all();
+        // limit 4
+        $doctors = Doctor::all()->take(20);
 
+        // dd($request->all());
         if ($request->division) {
-            $doctors = $doctors->where('division', $request->division);
+            $doctors = Doctor::where('division', $request->division)->get();
         }
-        if ($request->speciality) {
-            $doctors = $doctors->where('speciality', $request->speciality);
+
+
+        if ($request->department) {
+            $doctors = Doctor::where('speciality', $request->department)->get();
         }
-        if ($request->speciality && $request->division) {
-            $doctors = $doctors->where('speciality', $request->speciality)->where('division', $request->division);
+        if ($request->department && $request->division) {
+
+            $doctors = Doctor::where('speciality', $request->department)->where('division', $request->division)->get();
         }
+
 
         $divisions = Division::all();
         $specialities = Speciality::all();
@@ -62,6 +68,11 @@ class HomeController extends Controller
     public function doctor_details($id)
     {
         $doctor = Doctor::find($id);
+
+        if (!$doctor) {
+            return redirect()->route('welcome');
+        }
+
         $popular_doctors = Doctor::limit(4)->get();
         return view('theme.user.doctor_details.index', compact('doctor', 'popular_doctors'));
     }
@@ -82,5 +93,17 @@ class HomeController extends Controller
         $appointment = Appointment::find($request->appointment);
         $doctor = Doctor::find($appointment->doctor_id);
         return view('theme.user.congratulation.index', compact('appointment', 'doctor'));
+    }
+    public function track(Request $request)
+    {
+        $appointments = [];
+
+        if ($request->phone_or_appoint) {
+
+            $appointments = Appointment::where('phone', $request->phone_or_appoint)->orWhere('appointment_id', $request->phone_or_appoint)->get();
+            // return with query string
+            return view('theme.user.track.index', ['appoint' => $request->phone_or_appoint])->with('appointments', $appointments);
+        }
+        return view('theme.user.track.index', ['appoint' => $request->phone_or_appoint], compact('appointments'));
     }
 }
